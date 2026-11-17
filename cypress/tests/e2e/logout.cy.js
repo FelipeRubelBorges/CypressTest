@@ -8,7 +8,9 @@ describe("Logout", () => {
 
     // the login is done before each test
     beforeEach(() => {
-        login.login(Cypress.env("user_name"), Cypress.env("user_password"));
+        cy.env(["user_name", "user_password"], { log: false }).then(({ user_name, user_password }) => {
+            login.login(user_name, user_password);
+        });
     });
 
     // the first test is to logout
