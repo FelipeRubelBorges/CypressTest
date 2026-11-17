@@ -6,7 +6,9 @@ describe("Login", () => {
 
     // the first test is to login with valid credentials
     it("should login with valid credentials", () => {
-        login.login(Cypress.env("user_name"), Cypress.env("user_password"));
+        cy.env(["user_name", "user_password"], { log: false }).then(({ user_name, user_password }) => {
+            login.login(user_name, user_password);
+        });
     });
 
     // the second test is to login with invalid credentials
